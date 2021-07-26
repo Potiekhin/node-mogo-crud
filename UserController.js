@@ -3,7 +3,7 @@ const UserService = require('./UserService')
 class UserController {
     async create(req, res) {
         try {
-            const user = await UserService.create(req.body)
+            const user = await UserService.create(req.body, req.files.picture)
             res.status(201).json(user)
         } catch (e) {
             res.status(500).json(e)

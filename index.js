@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const router = require('./router.js')
+const fileUpload = require('express-fileupload')
 
 const PORT = 7777
 const DB_URL = 'mongodb+srv://root:root@test.imoqd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
@@ -9,7 +10,9 @@ const DB_URL = 'mongodb+srv://root:root@test.imoqd.mongodb.net/myFirstDatabase?r
 const app = express()
 
 app.use(express.json())
-app.use('/api',router)
+app.use(express.static('static'))
+app.use(fileUpload({}))
+app.use('/api', router)
 
 const start = async () => {
     try {

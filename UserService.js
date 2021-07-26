@@ -1,8 +1,10 @@
 const UserModel = require('./UserModel')
+const fileService = require('./fileService')
 
 class UserService {
-    async create(user) {
-        const createUser = await UserModel.create(user)
+    async create(user, picture) {
+        const fileName = fileService.saveFile(picture)
+        const createUser = await UserModel.create({...user, picture: fileName})
         return createUser
     }
     async getAll() {
